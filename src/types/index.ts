@@ -12,16 +12,21 @@ export interface ImprovementSuggestion {
   suggestion: string;
 }
 
+export type ExtractionMethod = 'pdf-parse' | 'tesseract-ocr';
+
 export interface FileMetadata {
   fileName: string;
   fileType: string;
   fileSizeKb: number;
   pageCount?: number;
+  parsedPages?: number;
+  truncated?: boolean;
   wordCount: number;
   extractedCharacters: number;
   processingTimeMs?: number;
   modelUsed?: string;
   confidenceScore?: number;
+  extractionMethod?: ExtractionMethod;
 }
 
 export interface AnalysisResult {
@@ -74,4 +79,5 @@ export interface ActiveDocument {
   previewUrl: string;
   fileType: 'pdf' | 'image';
   extractedText?: string;
+  extractionMeta?: FileMetadata;
 }
